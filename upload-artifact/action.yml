@@ -1,0 +1,44 @@
+name: "create-python-lambda-artifact"
+description: "creates the lambda artifact (.zip) for the provided python application"
+inputs:
+  region:
+    description: "aws region name"
+    required: true
+  access-key:
+    description: "access key"
+    required: true
+  secret-key:
+    description: "secret key"
+    required: true
+  account-id:
+    description: "aws account id"
+    required: true
+  role-name:
+    description: "role to assume"
+    required: true
+  bucket-name:
+    description: "bucket name where to store the artifact"
+    required: true
+  service-name:
+    description: "name of the service"
+    required: true
+  version:
+    description: "version of the service"
+    required: true
+  module-path:
+    description: "folder where the project/module is located"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        ${{ github.action_path }}/upload-artifact.sh -r "${{ inputs.region }}" \
+                                                     -a "${{ inputs.access-key }}" \
+                                                     -s "${{ inputs.secret-key }}" \
+                                                     -c "${{ inputs.account-id }}" \
+                                                     -o "${{ inputs.role-name }}" \
+                                                     -b "${{ inputs.bucket-name }}" \
+                                                     -n "${{ inputs.service-name }}" \
+                                                     -v "${{ inputs.version }}" \
+                                                     -m "${{ inputs.module-path }}"
+      shell: bash
