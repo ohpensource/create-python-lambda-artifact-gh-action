@@ -1,0 +1,48 @@
+name: "create-python-lambda-layer-artifact"
+description: "creates the lambda layer artifact (.zip) for the provided python requirements"
+inputs:
+  region:
+    description: "aws region name"
+    required: true
+  access-key:
+    description: "access key"
+    required: true
+  secret-key:
+    description: "secret key"
+    required: true
+  account-id:
+    description: "aws account id"
+    required: true
+  role-name:
+    description: "role to assume"
+    required: true
+  bucket-name:
+    description: "bucket name where to store the artifact"
+    required: true
+  service-name:
+    description: "name of the service"
+    required: true
+  layer-name:
+    description: "name of the layer"
+    required: true
+  version:
+    description: "version of the service"
+    required: true
+  requirements-file:
+    description: "path for the requirements file. Include extension!"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        ${{ github.action_path }}/upload-layer.sh -r ${{ inputs.region }} \
+                                                  -a ${{ inputs.access-key }} \
+                                                  -s ${{ inputs.secret-key }} \
+                                                  -c ${{ inputs.account-id }} \
+                                                  -o ${{ inputs.role-name }} \
+                                                  -b ${{ inputs.bucket-name }}\
+                                                  -n ${{ inputs.service-name }} \
+                                                  -l ${{ inputs.layer-name }} \
+                                                  -v ${{ inputs.version }} \
+                                                  -e ${{ inputs.requirements-file }} 
+      shell: bash
