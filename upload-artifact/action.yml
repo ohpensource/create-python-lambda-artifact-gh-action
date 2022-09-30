@@ -32,13 +32,14 @@ runs:
   using: "composite"
   steps:
     - run: |
-        ${{ github.action_path }}/upload-artifact.sh -r "${{ inputs.region }}" \
-                                                     -a "${{ inputs.access-key }}" \
-                                                     -s "${{ inputs.secret-key }}" \
-                                                     -c "${{ inputs.account-id }}" \
-                                                     -o "${{ inputs.role-name }}" \
-                                                     -b "${{ inputs.bucket-name }}" \
-                                                     -n "${{ inputs.service-name }}" \
-                                                     -v "${{ inputs.version }}" \
-                                                     -m "${{ inputs.module-path }}"
+        ${{ github.action_path }}/upload-artifact.sh \
+          -r "${{ inputs.region }}" \
+          -a "${{ inputs.access-key }}" \
+          -s "${{ inputs.secret-key }}" \
+          -c "${{ inputs.account-id }}" \
+          -o "${{ inputs.role-name }}" \
+          -b "${{ inputs.bucket-name }}" \
+          -n "${{ inputs.service-name }}" \
+          -v "${{ inputs.version }}" \
+          -m "${{ inputs.module-path }}"
       shell: bash
