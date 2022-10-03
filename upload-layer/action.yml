@@ -35,14 +35,15 @@ runs:
   using: "composite"
   steps:
     - run: |
-        ${{ github.action_path }}/upload-layer.sh -r ${{ inputs.region }} \
-                                                  -a ${{ inputs.access-key }} \
-                                                  -s ${{ inputs.secret-key }} \
-                                                  -c ${{ inputs.account-id }} \
-                                                  -o ${{ inputs.role-name }} \
-                                                  -b ${{ inputs.bucket-name }}\
-                                                  -n ${{ inputs.service-name }} \
-                                                  -l ${{ inputs.layer-name }} \
-                                                  -v ${{ inputs.version }} \
-                                                  -e ${{ inputs.requirements-file }} 
+        ${{ github.action_path }}/upload-layer.sh \
+          -r "${{ inputs.region }}" \
+          -a "${{ inputs.access-key }}" \
+          -s "${{ inputs.secret-key }}" \
+          -c "${{ inputs.account-id }}" \
+          -o "${{ inputs.role-name }}" \
+          -b "${{ inputs.bucket-name }}" \
+          -n "${{ inputs.service-name }}" \
+          -l "${{ inputs.layer-name }}" \
+          -v "${{ inputs.version }}" \
+          -e "${{ inputs.requirements-file }}"
       shell: bash

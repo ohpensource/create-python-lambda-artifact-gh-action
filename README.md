@@ -25,8 +25,8 @@ build-modules:
     - uses: ohpensource/create-python-lambda-artifact-gh-action/upload-artifact@v0.1.0
       with:
         region: "eu-west-1"
-        access-key: "540gj..."
-        secret-key: "5rgij..."
+        access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         account-id: "my-account-id"
         role-name: "my-role-name"
         bucket-name: "my-bucket-name"
@@ -36,8 +36,8 @@ build-modules:
     - uses: ohpensource/create-python-lambda-artifact-gh-action/upload-layer@v0.1.0
       with:
         region: "eu-west-1"
-        access-key: "540gj..."
-        secret-key: "5rgij..."
+        access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         account-id: "my-account-id"
         role-name: "my-role-name"
         bucket-name: "my-bucket-name"
